@@ -28,18 +28,22 @@
       var lock = {};
 
       function safeApply(fn) {
-          var phase = $rootScope.$root.$$phase;
-          if(phase === '$apply' || phase === '$digest') {
-              if(fn && (typeof(fn) === 'function')) {
-                  fn();
-              }
-          } else {
-              $rootScope.$apply(fn);
+        var phase = $rootScope.$root.$$phase;
+        if(phase === '$apply' || phase === '$digest') {
+          if(fn && (typeof(fn) === 'function')) {
+            fn();
           }
+        } else {
+          $rootScope.$apply(fn);
+        }
       }
 
       lock.show = function() {
         Lock.show();
+      }
+
+      lock.hide = function() {
+        Lock.hide();
       }
 
       lock.on = function(event, cb) {
@@ -60,7 +64,9 @@
           });
         });
       }
+
       return lock;
+      
     }
   }
 })();
