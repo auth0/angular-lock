@@ -23,9 +23,15 @@
     this.$inject = ['$rootScope'];
 
     this.$get = function($rootScope) {
-      
+
       var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
       var lock = {};
+      var functions = [];
+      for (var i in Lock) {
+        if(typeof Lock[i] === 'function') {
+          functions.push(i);
+        }
+      }
 
       function safeApply(fn) {
         var phase = $rootScope.$root.$$phase;
@@ -38,35 +44,29 @@
         }
       }
 
-      lock.show = function() {
-        Lock.show();
-      }
-
-      lock.hide = function() {
-        Lock.hide();
-      }
-
-      lock.on = function(event, cb) {
-        var lockEvents = ['show', 'hide', 'error', 'authenticated', 'authorization_error'];
-        if(lockEvents.indexOf(event) !== -1) {
-          Lock.on(event, function(data) {
+      function wrapArguments(parameters) {
+        var lastIndex = parameters.length - 1,
+          func = parameters[lastIndex];
+        if(typeof func === 'function') {
+          parameters[lastIndex] = function() {
+            var args = arguments;
             safeApply(function() {
-              cb(data);
-            });
-          });
+              func.apply(Lock, args)
+            })
+          }
         }
+        return parameters;
       }
 
-      lock.getProfile = function(token, cb) {
-        Lock.getProfile(token, function(error, data) {
-          safeApply(function() {
-            cb(error, data);
-          });
-        });
+      for (var i = 0; i < functions.length; i++) {
+        lock[functions[i]]  = (function(name){
+          var customFunction = function() {
+            return Lock[name].apply(Lock, wrapArguments(arguments) );
+          };
+          return customFunction;
+        })(functions[i]);
       }
-
       return lock;
-      
     }
   }
 })();
