@@ -20,9 +20,7 @@
       this.options = config.options || {};
     }
 
-    this.$inject = ['$rootScope'];
-
-    this.$get = function($rootScope) {
+    this.$get = ["$rootScope", function($rootScope) {
 
       var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
       var lock = {};
@@ -67,6 +65,6 @@
         })(functions[i]);
       }
       return lock;
-    }
+    }]
   }
 })();
