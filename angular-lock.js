@@ -18,11 +18,12 @@
       this.clientID = config.clientID;
       this.domain = config.domain;
       this.options = config.options || {};
-    }
+    };
 
     this.$get = ["$rootScope", function($rootScope) {
 
       var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
+      var credentials = {clientID: this.clientID, domain: this.domain};
       var lock = {};
       var functions = [];
       for (var i in Lock) {
@@ -64,6 +65,22 @@
           return customFunction;
         })(functions[i]);
       }
+  
+      lock.interceptHash = function() {
+        $rootScope.$on('$locationChangeStart', function(event, location) {
+          if (/id_token=/.test(location)) {
+
+            var auth0 = new Auth0(credentials);
+            var authResult = auth0.parseHash();
+
+            if (authResult && authResult.idToken) {
+              Lock.emit('authenticated', authResult);
+            }
+
+          }
+        });
+      };
+
       return lock;
     }]
   }
