@@ -72,7 +72,7 @@ app.run(function(lock) {
   lock.on('authenticated', function(authResult) {
     localStorage.setItem('id_token', authResult.idToken);
 
-    lock.getProfile(result.idToken, function(error, profile) {
+    lock.getProfile(authResult.idToken, function(error, profile) {
       if (error) {
         console.log(error);
       }
