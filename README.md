@@ -69,6 +69,8 @@ Then, set up a listener for the `authenticated` event.
 ```js
 app.run(function(lock) {
 
+  lock.interceptHash();
+
   lock.on('authenticated', function(authResult) {
     localStorage.setItem('id_token', authResult.idToken);
 
