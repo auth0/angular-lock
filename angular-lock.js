@@ -71,7 +71,7 @@
           if (/id_token=/.test(location)) {
 
             var auth0 = new Auth0(credentials);
-            var authResult = auth0.parseHash();
+            var authResult = auth0.parseHash(window.location.href);
 
             if (authResult && authResult.idToken) {
               Lock.emit('authenticated', authResult);
