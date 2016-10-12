@@ -5,11 +5,15 @@
   angular
     .module('auth0.lock', [])
     .provider('lock', lock);
-  
+
   function lock() {
     if (typeof Auth0Lock !== 'function') {
       throw new Error('Auth0Lock must be loaded.');
     }
+
+    // Stub required functions to allow auth0-angular to initialize
+    Auth0Lock.prototype.getClient = function() { void 0; };
+    Auth0Lock.prototype.parseHash = function() { void 0; };
 
     this.init = function(config) {
       if (!config) {
@@ -65,7 +69,7 @@
           return customFunction;
         })(functions[i]);
       }
-  
+
       lock.interceptHash = function() {
         $rootScope.$on('$locationChangeStart', function(event, location) {
           if (/id_token=/.test(location)) {
