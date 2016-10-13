@@ -1,6 +1,6 @@
 {
   "name": "angular-lock",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Angular wrapper for Lock",
   "main": "angular-lock.js",
   "repository": {
