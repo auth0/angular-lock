@@ -68,7 +68,8 @@ Then, set up a listener for the `authenticated` event.
 
 ```js
 app.run(function(lock) {
-
+  
+  // For use with UI Router
   lock.interceptHash();
 
   lock.on('authenticated', function(authResult) {
