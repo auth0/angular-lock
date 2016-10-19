@@ -74,8 +74,11 @@
         $rootScope.$on('$locationChangeStart', function(event, location) {
           if (/id_token=/.test(location)) {
 
+            // Hash simulation for html5Mode(true).
+            var hash = (window.location.hash) ? window.location.hash : '#' + location.replace(/http.?:\/\/[^/]+/,'').slice(1);
+
             var auth0 = new Auth0(credentials);
-            var authResult = auth0.parseHash(window.location.href);
+            var authResult = auth0.parseHash(hash);
 
             if (authResult && authResult.idToken) {
               Lock.emit('authenticated', authResult);
