@@ -72,19 +72,24 @@
 
       lock.interceptHash = function() {
         $rootScope.$on('$locationChangeStart', function(event, location) {
-          if (/id_token=/.test(location)) {
+
+          if (/id_token=/.test(location) || /error=/.test(location)) {
+            var auth0 = new Auth0(credentials);
 
             // Hash simulation for html5Mode(true).
             var hash = (window.location.hash) ? window.location.hash : '#' + location.replace(/http.?:\/\/[^/]+/,'').slice(1);
 
-            var auth0 = new Auth0(credentials);
             var authResult = auth0.parseHash(hash);
-
-            if (authResult && authResult.idToken) {
-              Lock.emit('authenticated', authResult);
-            }
-
           }
+
+          if (authResult && authResult.idToken) {
+            Lock.emit('authenticated', authResult);
+          }
+
+          if (authResult && authResult.error) {
+            Lock.emit('authorization_error', authResult);
+          }
+
         });
       };
 
