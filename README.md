@@ -55,11 +55,7 @@ app.controller('loginController', function(lock) {
 
 <div ng-controller="loginController as login">
 
-...
-
   <button ng-click="login.lock.show()">Log In</button>
-
-...
 
 </div>
 ```
