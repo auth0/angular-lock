@@ -71,23 +71,27 @@
       }
 
       lock.interceptHash = function() {
+        if (typeof auth0.WebAuth !== 'function') {
+          throw new Error('Auth0.js version 8 or higher must be loaded');
+          return;
+        }
+
         $rootScope.$on('$locationChangeStart', function(event, location) {
 
           if (/id_token=/.test(location) || /error=/.test(location)) {
-            var auth0 = new Auth0(credentials);
+            var webAuth = new auth0.WebAuth(credentials);
 
             // Hash simulation for html5Mode(true).
             var hash = (window.location.hash) ? window.location.hash : '#' + location.replace(/http.?:\/\/[^/]+/,'').slice(1);
 
-            var authResult = auth0.parseHash(hash);
-          }
-
-          if (authResult && authResult.idToken) {
-            Lock.emit('authenticated', authResult);
-          }
-
-          if (authResult && authResult.error) {
-            Lock.emit('authorization_error', authResult);
+            webAuth.parseHash({ hash: hash }, function(err, authResult) {
+              if (err) {
+                Lock.emit('authorization_error', authResult);
+              }
+              if (authResult && authResult.idToken) {
+                Lock.emit('authenticated', authResult);
+              }
+            });
           }
 
         });
