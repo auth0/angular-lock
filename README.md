@@ -2,6 +2,8 @@
 
 This module provides a thin wrapper for version 10 of Auth0's [Lock widget](https://auth0.com/docs/libraries/lock).
 
+> **Note:** For use with Lock 10.9, see the beta [v2 branch](https://github.com/auth0/angular-lock/tree/v2).
+
 ## Installation
 
 **Bower**
