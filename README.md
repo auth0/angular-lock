@@ -9,7 +9,7 @@ This module provides a thin wrapper for version 10 of Auth0's [Lock widget](http
 **Bower**
 
 ```bash
-bower install angular-lock
+bower install angular-lock#2.0.0-beta.0
 ```
 
 Ensure that both Auth0Lock and angular-lock are loaded on the page.
