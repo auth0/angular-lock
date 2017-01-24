@@ -86,7 +86,7 @@
 
             webAuth.parseHash({ hash: hash }, function(err, authResult) {
               if (err) {
-                Lock.emit('authorization_error', authResult);
+                Lock.emit('authorization_error', err);
               }
               if (authResult && authResult.idToken) {
                 Lock.emit('authenticated', authResult);
