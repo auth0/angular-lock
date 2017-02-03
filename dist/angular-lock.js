@@ -2,14 +2,13 @@
 
   'use strict';
 
+  var Auth0Lock = require('auth0-lock').default;
+
   angular
     .module('auth0.lock', [])
     .provider('lock', lock);
 
   function lock() {
-    if (typeof Auth0Lock !== 'function') {
-      throw new Error('Auth0Lock must be loaded.');
-    }
 
     // Stub required functions to allow auth0-angular to initialize
     Auth0Lock.prototype.getClient = function() { void 0; };
