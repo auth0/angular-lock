@@ -6,21 +6,10 @@ This module provides a thin wrapper for version 10 of Auth0's [Lock widget](http
 
 ## Installation
 
-**Bower**
+**NPM**
 
 ```bash
-bower install angular-lock
-```
-
-Ensure that both Auth0Lock and angular-lock are loaded on the page.
-
-```html
-...
-
-<script src="bower_components/auth0-lock/build/lock.js"></script>
-<script src="bower_components/angular-lock/build/angular-lock.js"></script>
-
-...
+npm  install angular-lock
 ```
 
 ## Usage
@@ -28,6 +17,7 @@ Ensure that both Auth0Lock and angular-lock are loaded on the page.
 Bring in the `auth0.lock` module.
 
 ```js
+require('angular-lock');
 var app = angular.module('myApp', ['auth0.lock']);
 ```
 
