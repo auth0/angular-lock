@@ -91,7 +91,6 @@
               webAuth.parseHash(
                 { hash: hash, _idTokenVerification: shouldVerifyIdToken },
                 function(err, authResult) {
-                  console.log('here');
                   if (err) {
                     Lock.emit('authorization_error', err);
                   }
