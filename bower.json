@@ -1,13 +1,13 @@
 {
   "name": "angular-lock",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "main": "angular-lock.js",
   "dependencies": {
     "angular": "*",
-    "auth0-lock": ">= 10.9.0",
-    "auth0.js": "^8.0.0"
+    "auth0-lock": ">=10.13.0",
+    "auth0.js": "^8.4.0"
   },
   "resolutions": {
-    "angular": "1.5.8"
+    "angular": "1.6.3"
   }
 }
