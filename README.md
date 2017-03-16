@@ -1,26 +1,24 @@
-# Auth0 Lock 10 for Angular 1.x
+# Auth0 Lock for Angular 1.x
 
 This module provides a thin wrapper for version 10 of Auth0's [Lock widget](https://auth0.com/docs/libraries/lock).
 
-> **Note:** angular-lock version 2 is meant to be used with Auth0Lock version 10.9 or higher. Please ensure you have auth0.js v8 or higher loaded.
+> **Note:** angular-lock version 2.0 is meant to be used with Auth0Lock version 10.9 or higher. Please ensure you have auth0.js v8 or higher loaded as well.
 
 ## Installation
 
 **Bower**
 
 ```bash
-bower install angular-lock#2.0.0-beta.0
+bower install angular-lock
 ```
 
 Ensure that both Auth0Lock and angular-lock are loaded on the page.
 
 ```html
-...
 
 <script src="bower_components/auth0-lock/build/lock.js"></script>
+<script src="bower_components/auth0.js/build/auth0.js"></script>
 <script src="bower_components/angular-lock/build/angular-lock.js"></script>
-
-...
 ```
 
 ## Usage
@@ -43,6 +41,22 @@ app.config(function(lockProvider) {
 });
 ```
 
+With Lock versions > 10.9 (and thus auth0.js versions > 8.0), the `id_token` must be signed with the RS256 algorithm. You may choose to skip `id_token` verification if you need to use HS256 as the signing algorithm.
+
+```js
+app.config(function(lockProvider) {
+  lockProvider.init({
+    clientID: AUTH0_CLIENT_ID,
+    domain: AUTH0_DOMAIN,
+    options: {
+      _idTokenVerification: false
+    }
+  });
+});
+```
+
+See the [auth0.js migration guide](https://auth0.com/docs/libraries/auth0js/migration-guide#switching-from-hs256-to-rs256) for more information.
+
 Use `lock` in the `run` block, in a service, or in a controller. For example, show the Auth0Lock widget from a controller and associated view.
 
 ```js
@@ -53,7 +67,6 @@ app.controller('loginController', function(lock) {
 ```
 
 ```html
-...
 
 <div ng-controller="loginController as login">
 
