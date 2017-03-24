@@ -26,7 +26,8 @@
 
     this.$get = [
       '$rootScope',
-      function($rootScope) {
+      '$location',
+      function($rootScope, $location) {
         var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
         var credentials = { clientID: this.clientID, domain: this.domain };
         var shouldVerifyIdToken = true;
@@ -83,10 +84,7 @@
             if (/id_token=/.test(location) || /error=/.test(location)) {
               var webAuth = new auth0.WebAuth(credentials);
 
-              // Hash simulation for html5Mode(true).
-              var hash = window.location.hash
-                ? window.location.hash
-                : '#' + location.replace(/http.?:\/\/[^/]+/, '').slice(1);
+              var hash = $location.hash();
 
               webAuth.parseHash(
                 { hash: hash, _idTokenVerification: shouldVerifyIdToken },
