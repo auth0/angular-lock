@@ -53,7 +53,8 @@
         }
 
         function wrapArguments(parameters) {
-          var lastIndex = parameters.length - 1, func = parameters[lastIndex];
+          var lastIndex = parameters.length - 1,
+            func = parameters[lastIndex];
           if (typeof func === 'function') {
             parameters[lastIndex] = function() {
               var args = arguments;
@@ -81,10 +82,14 @@
           }
 
           $rootScope.$on('$locationChangeStart', function(event, location) {
-            if (/id_token=/.test(location) || /error=/.test(location)) {
+            if (
+              /id_token=/.test(location) ||
+              /access_token=/.test(location) ||
+              /error=/.test(location)
+            ) {
               var webAuth = new auth0.WebAuth(credentials);
 
-              var hash = $location.hash();
+              var hash = $location.hash() || window.location.hash;
 
               webAuth.parseHash(
                 { hash: hash, _idTokenVerification: shouldVerifyIdToken },
