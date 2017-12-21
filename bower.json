@@ -5,7 +5,7 @@
   "dependencies": {
     "angular": "*",
     "auth0-lock": ">=10.13.0",
-    "auth0.js": "^8.4.0"
+    "auth0.js": "^9.0.0"
   },
   "resolutions": {
     "angular": "1.6.3"

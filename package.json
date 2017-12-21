@@ -21,6 +21,6 @@
     "gulp-uglify": "^2.1.0"
   },
   "dependencies": {
-    "auth0-js": "^8.4.0"
+    "auth0-js": "^9.0.0"
   }
 }
