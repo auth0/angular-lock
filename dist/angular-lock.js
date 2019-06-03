@@ -22,6 +22,10 @@
       this.clientID = config.clientID;
       this.domain = config.domain;
       this.options = config.options || {};
+      this.options._telemetryInfo = {
+        name: 'angular-lock',
+        version: '3.0.0'
+      };
     };
 
     this.$get = [
@@ -29,7 +33,12 @@
       '$location',
       function($rootScope, $location) {
         var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
-        var credentials = { clientID: this.clientID, domain: this.domain };
+        var webAuthOptions = { 
+          clientID: this.clientID,
+          domain: this.domain,
+          _telemetryInfo: this.options._telemetryInfo,
+          _sendTelemetry: this.options._sendTelemetry
+         };
         var shouldVerifyIdToken = true;
         if (this.options._idTokenVerification === false)
           shouldVerifyIdToken = false;
@@ -87,7 +96,7 @@
               /access_token=/.test(location) ||
               /error=/.test(location)
             ) {
-              var webAuth = new auth0.WebAuth(credentials);
+              var webAuth = new auth0.WebAuth(webAuthOptions);
 
               var hash = $location.hash() || window.location.hash;
 

@@ -36,7 +36,7 @@
         var webAuthOptions = { 
           clientID: this.clientID,
           domain: this.domain,
-          _telemetryInfo: this.opotions._telemetryInfo,
+          _telemetryInfo: this.options._telemetryInfo,
           _sendTelemetry: this.options._sendTelemetry
          };
         var shouldVerifyIdToken = true;
