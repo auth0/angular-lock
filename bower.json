@@ -1,6 +1,5 @@
 {
   "name": "angular-lock",
-  "version": "3.0.1",
   "main": "angular-lock.js",
   "dependencies": {
     "angular": "*",
