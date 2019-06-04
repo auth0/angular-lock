@@ -24,7 +24,7 @@
       this.options = config.options || {};
       this.options._telemetryInfo = {
         name: 'angular-lock',
-        version: '3.0.0'
+        version: '3.0.2'
       };
     };
 
