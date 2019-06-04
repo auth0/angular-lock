@@ -1,8 +1,8 @@
 # Auth0 Lock for Angular 1.x
 
-This module provides a thin wrapper for version 10 of Auth0's [Lock widget](https://auth0.com/docs/libraries/lock).
+This module provides a thin wrapper for version 11 of Auth0's [Lock widget](https://auth0.com/docs/libraries/lock).
 
-> **Note:** angular-lock version 2.0 is meant to be used with Auth0Lock version 10.9 or higher. Please ensure you have auth0.js v8 or higher loaded as well.
+> **Note:** angular-lock version 2.0 is meant to be used with Auth0Lock version 11.16.2 or higher. Please ensure you have auth0.js v8 or higher loaded as well.
 
 ## Installation
 
