@@ -1,6 +1,6 @@
 {
   "name": "angular-lock",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Angular wrapper for Lock",
   "main": "angular-lock.js",
   "repository": {
@@ -26,6 +26,6 @@
     "gulp-uglify": "^2.1.0"
   },
   "dependencies": {
-    "auth0-js": "^9.12.0"
+    "auth0-js": "^9.12.1"
   }
 }
