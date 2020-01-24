@@ -1,10 +1,10 @@
 (function() {
-  "use strict";
-  angular.module("auth0.lock", []).provider("lock", lock);
+  'use strict';
+  angular.module('auth0.lock', []).provider('lock', lock);
 
   function lock() {
-    if (typeof Auth0Lock !== "function") {
-      throw new Error("Auth0Lock must be loaded.");
+    if (typeof Auth0Lock !== 'function') {
+      throw new Error('Auth0Lock must be loaded.');
     }
 
     // Stub required functions to allow auth0-angular to initialize
@@ -17,43 +17,43 @@
 
     this.init = function(config) {
       if (!config) {
-        throw new Error("clientID and domain must be provided to lock");
+        throw new Error('clientID and domain must be provided to lock');
       }
       this.clientID = config.clientID;
       this.domain = config.domain;
       this.options = config.options || {};
       this.options._telemetryInfo = {
-        name: "angular-lock",
-        version: "3.0.3"
+        name: 'angular-lock',
+        version: '3.0.4'
       };
     };
 
     this.$get = [
-      "$rootScope",
-      "$location",
+      '$rootScope',
+      '$location',
       function($rootScope, $location) {
         var Lock = new Auth0Lock(this.clientID, this.domain, this.options);
-        var webAuthOptions = {
+        var webAuthOptions = { 
           clientID: this.clientID,
           domain: this.domain,
           _telemetryInfo: this.options._telemetryInfo,
           _sendTelemetry: this.options._sendTelemetry
-        };
+         };
         var shouldVerifyIdToken = true;
         if (this.options._idTokenVerification === false)
           shouldVerifyIdToken = false;
         var lock = {};
         var functions = [];
         for (var i in Lock) {
-          if (typeof Lock[i] === "function") {
+          if (typeof Lock[i] === 'function') {
             functions.push(i);
           }
         }
 
         function safeApply(fn) {
           var phase = $rootScope.$root.$$phase;
-          if (phase === "$apply" || phase === "$digest") {
-            if (fn && typeof fn === "function") {
+          if (phase === '$apply' || phase === '$digest') {
+            if (fn && typeof fn === 'function') {
               fn();
             }
           } else {
@@ -64,7 +64,7 @@
         function wrapArguments(parameters) {
           var lastIndex = parameters.length - 1,
             func = parameters[lastIndex];
-          if (typeof func === "function") {
+          if (typeof func === 'function') {
             parameters[lastIndex] = function() {
               var args = arguments;
               safeApply(function() {
@@ -85,12 +85,12 @@
         }
 
         lock.interceptHash = function() {
-          if (typeof auth0.WebAuth !== "function") {
-            throw new Error("Auth0.js version 8 or higher must be loaded");
+          if (typeof auth0.WebAuth !== 'function') {
+            throw new Error('Auth0.js version 8 or higher must be loaded');
             return;
           }
 
-          $rootScope.$on("$locationChangeStart", function(event, location) {
+          $rootScope.$on('$locationChangeStart', function(event, location) {
             if (
               /id_token=/.test(location) ||
               /access_token=/.test(location) ||
@@ -104,10 +104,10 @@
                 { hash: hash, _idTokenVerification: shouldVerifyIdToken },
                 function(err, authResult) {
                   if (err) {
-                    Lock.emit("authorization_error", err);
+                    Lock.emit('authorization_error', err);
                   }
                   if (authResult && authResult.idToken) {
-                    Lock.emit("authenticated", authResult);
+                    Lock.emit('authenticated', authResult);
                   }
                 }
               );
