@@ -8,8 +8,8 @@ var gulp = require('gulp'),
       'angular-lock.js'
     ];
 
-gulp.task('build', function() {
-  gulp.src(sourceFiles)
+gulp.task('default', function() {
+  return gulp.src(sourceFiles)
     .pipe(injectVersion({
       prepend: '',
       replace: /%%PACKAGE_VERSION%%/g
@@ -21,5 +21,3 @@ gulp.task('build', function() {
     .pipe(rename('angular-lock.min.js'))
     .pipe(gulp.dest('./dist'))
 });
-
-gulp.task('default', ['build']);
