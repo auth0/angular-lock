@@ -9,7 +9,8 @@
   },
   "scripts": {
     "version": "npm run build && git add -A dist",
-    "build": "gulp"
+    "build": "gulp",
+    "prepack": "npm run build"
   },
   "author": "Auth0",
   "license": "MIT",
