@@ -9,7 +9,8 @@
   },
   "scripts": {
     "version": "npm run build && git add -A dist",
-    "build": "gulp"
+    "build": "gulp",
+    "prepack": "npm run build"
   },
   "author": "Auth0",
   "license": "MIT",
@@ -18,14 +19,18 @@
   },
   "homepage": "https://github.com/auth0/angular-lock#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-inject-version": "^1.0.1",
     "gulp-ng-annotate": "^2.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^2.1.0"
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "auth0-js": "^9.12.2"
+    "auth0-js": "^9.13.2"
+  },
+  "resolutions": {
+    "acorn": "^5.7.4",
+    "kind-of": "^6.0.3"
   }
 }
