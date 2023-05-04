@@ -57,6 +57,13 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: environment-angularjs-version
+    attributes:
+      label: Angular.js version
+    validations:
+      required: true
+
   - type: dropdown
     id: environment-browser
     attributes:
