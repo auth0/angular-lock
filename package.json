@@ -27,7 +27,7 @@
     "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "auth0-js": "^9.19.1"
+    "auth0-js": "^9.21.0"
   },
   "resolutions": {
     "acorn": "^5.7.4",
