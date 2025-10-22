@@ -1,5 +1,6 @@
 # Auth0 Lock for Angular 1.x
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fauth0%2Fangular-lock.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fauth0%2Fangular-lock?ref=badge_shield)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/auth0/angular-lock)
 
 
 This module provides a thin wrapper for version 11 of Auth0's [Lock widget](https://auth0.com/docs/libraries/lock).
