@@ -1,0 +1,17 @@
+name: Claude Code PR Review
+
+on:
+  issue_comment:
+    types: [ created ]
+  pull_request_review_comment:
+    types: [ created ]
+  pull_request_review:
+    types: [ submitted ]
+
+jobs:
+  claude-review:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
