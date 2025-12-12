@@ -1,0 +1,13 @@
+{
+    "files": {
+        "src/version.ts": [],
+        ".version": [],
+        "README.md": [
+            "{MAJOR}.{MINOR}"
+        ],
+        "FAQ.md": [
+            "{MAJOR}.{MINOR}.{PATCH}"
+        ]
+    },
+    "postbump": "npm run docs"
+}
